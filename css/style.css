@@ -2,3 +2,7 @@
 .ember-application {
     margin: 20px;
 }
+
+.wide{
+	width: 500px;
+}

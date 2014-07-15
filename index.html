@@ -2,82 +2,104 @@
 <html>
 
 <head>
-  <meta charset="utf-8">
-  <title>MyBlog</title>
-  <link rel="stylesheet" href="/myblog/css/normalize.css">
-  <link rel="stylesheet" href="/myblog/css/style.css">
-  <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <meta charset="utf-8">
+    <title>MyBlog</title>
+    <link rel="stylesheet" href="/myblog/css/normalize.css">
+    <link rel="stylesheet" href="/myblog/css/style.css">
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
 </head>
 
 <body>
-  <script type="text/x-handlebars">
-    <div class="navbar">
-      <div class="navbar-inner">
-        <a class="brand" href="#">MyBlog</a>
-        <ul class="nav">
-          <li>
-            {{#link-to 'users'}}Users{{/link-to}}
-          </li>
-        </ul>
-      </div>
-    </div>
-    {{outlet}}
-  </script>
-  <script type="text/x-handlebars" id="users/index">
-    <p class="text-warning">Please select a user</p>
-  </script>
-  <script type="text/x-handlebars" id='index'>
-    <div>
-      Welcome to MyBlog
-    </div>
-  </script>
-
-  <script type="text/x-handlebars" id='users'>
-    <div>
-      <div style="width: 200px; float:left;">
-        <ol>
-          {{#each}}
-            <li>
-              {{#link-to 'user' this}}{{name}}{{/link-to}}
-            </li>
-          {{/each}}
-        </ol>
-      </div>
-      <div style="width: 400px; float:left;">
-        {{outlet}}
-      </div>
-    </div>
-  </script>
-  <script type="text/x-handlebars" id='user'>
-    <div>
-      {{#if isEditing }}
-        <p>{{input value=name}}</p>
-        <p>{{textarea value=bio rows='10' cols='100'}}</p>
-        <p>
-          <button {{action doneEditing}}>Save</button>
-        </p>
-        <p>
-          <button {{action cancelEditing}}>Cancel</button>
-        </p>
-      {{else}}
-        <div style='float:right'>
-          <button {{action edit}}>Edit</button>
+    <script type="text/x-handlebars">
+        <div class="navbar">
+            <div class="navbar-inner">
+                <a class="brand" href="#">MyBlog</a>
+                <ul class="nav">
+                    <li>
+                        {{#link-to 'users'}}Users{{/link-to}}
+                    </li>
+                    <li>
+                        {{#link-to 'users.new'}}New User{{/link-to}}
+                    </li>
+                </ul>
+            </div>
         </div>
-      {{/if}}
-      <p><b>{{name}}</b>
-      </p>
-      <p><b>Bio:</b>
-      </p>
-      <p>{{bio}}</p>
-    </div>
-  </script>
+        {{outlet}}
+    </script>
+    <script type="text/x-handlebars" id="users/index">
+        <p class="text-warning">Please select a user</p>
+    </script>
+    <script type="text/x-handlebars" id='index'>
+        <div>
+            Welcome to MyBlog
+        </div>
+    </script>
 
-  <script src="/myblog/js/libs/jquery-1.10.2.js"></script>
-  <script src="/myblog/js/libs/handlebars-1.1.2.js"></script>
-  <script src="/myblog/js/libs/ember-1.5.1.js"></script>
-  <script type="text/javascript" src="/myblog/js/libs/ember-data.js"></script>
-  <script src="/myblog/js/app.js"></script>
-  <!-- to activate the test runner, add the "?test" query string parameter -->
+    <script type="text/x-handlebars" id='users'>
+        <div>
+            <div style="width: 200px; float:left;">
+                <ol>
+                    {{#each}}
+                    <li>
+                        {{#link-to 'user' this}}{{name}}{{/link-to}}
+                    </li>
+                    {{/each}}
+                </ol>
+            </div>
+            <div style="width: 400px; float:left;">
+                {{outlet}}
+            </div>
+        </div>
+    </script>
+    <script type="text/x-handlebars" id='user'>
+        <div>
+            {{#if isEditing }}
+            <p>{{input value=name action='doneEditing'}}</p>
+            <p>{{textarea value=bio rows='10' cols='100' classNames = "wide"}}</p>
+
+            <p>
+                <button {{action doneEditing}}>Save</button>
+            </p>
+            <p>
+                <button {{action cancelEditing}}>Cancel</button>
+            </p>
+            {{else}}
+            <div style='float:right'>
+                <button {{action edit}}>Edit</button>
+            </div>
+            {{/if}}
+            <p><b>{{name}}</b>
+            </p>
+            <p><b>Bio:</b>
+            </p>
+            <p>{{bio}}</p>
+            <p><a {{bind-attr href='url' }} target='_blank'>{{url}}</a> 
+            </p>
+        </div>
+    </script>
+    <script type="text/x-handlebars" id='users/new'>
+        <div>
+            <p>
+                <b>Name:</b>
+                <br>{{input value=name action='save'}}</p>
+            <p>
+                <b>Bio: </b> 
+                <br>{{textarea value=bio rows='10' cols='100' classNames = "wide"}}</p>
+
+            <p>
+                <button {{action save}}>Save</button>
+            </p>
+            <p>
+                <button {{action cancel}}>Cancel</button>
+            </p>
+        </div>
+    </script>
+    <script src="/myblog/js/libs/jquery-1.10.2.js"></script>
+    <script src="/myblog/js/libs/handlebars-1.1.2.js"></script>
+    <script src="/myblog/js/libs/ember-1.5.1.js"></script>
+    <script type="text/javascript" src="/myblog/js/libs/ember-data.js"></script>
+    <script src="/myblog/js/app.js"></script>
+    <!-- to activate the test runner, add the "?test" query string parameter -->
 </body>
 
 </html>

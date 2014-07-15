@@ -1,15 +1,21 @@
 App = Ember.Application.create();
 
+// Overwrite applictoin serializer so that it won't send attributes marked as readonly to server.
+App.ApplicationSerializer = DS.RESTSerializer.extend({
+  serializeAttribute: function(record, json, key, attribute) {
+    if (!attribute.options.readOnly) {
+      return this._super(record, json, key, attribute);
+    }
+  }
+});
 
 App.Router.map(function() {
   // put your routes here
   this.resource('users', function(){
   	this.resource('user', { path: ':user_id' })
+    this.route('new')
   });
 });
-
-
-
 
 
 App.UsersRoute = Ember.Route.extend({
@@ -26,11 +32,11 @@ App.UsersRoute = Ember.Route.extend({
 });
 
 
-App.UserRoute = Ember.Route.extend({
-  // model: function(params) {
-  //   return this.modelFor('users').findBy('id', Number(params.user_id));
-  // }
-});
+// App.UserRoute = Ember.Route.extend({
+//   // model: function(params) {
+//   //   return this.modelFor('users').findBy('id', Number(params.user_id));
+//   // }
+// });
 
 App.UserAdapter = DS.RESTAdapter.extend({
   host: 'http://localhost:3000'
@@ -38,7 +44,8 @@ App.UserAdapter = DS.RESTAdapter.extend({
 
 App.User = DS.Model.extend({
   name: DS.attr('string'),
-  bio: DS.attr('string')
+  bio: DS.attr('string'),
+  url: DS.attr('string', {readOnly: true})
 })
 
 
@@ -48,33 +55,42 @@ App.User = DS.Model.extend({
 
 App.UserController = Ember.ObjectController.extend({
 	isEditing: false,
-	originalName: '',
-	originalBio: '',
-
 	actions: {
 		edit: function (){
 			this.set('isEditing', true);
-			this.set('originalName', this.get('name'));
-			this.set('originalBio', this.get('bio'));
 		},
-  //   doneEditing: function(){
-  //     Ember.$.ajax({
-  //         'url': App.apiPaths['user_path'] +'/'+ this.get('id') + '.json',
-  //         'type': 'PUT',
-  //         'data': { "user[name]": this.get('name'), 'user[bio]': this.get('bio')}
-  //       }
-  //       )
-  //     this.set('isEditing', false);
 
-  //   },    
-		// cancelEditing: function(){
-		// 	this.set('name', this.get('originalName'));
-  //     this.set('bio', this.get('originalBio'));
-  //     this.set('isEditing', false);
+    doneEditing: function(){
+      var record = this.get('model')
+      record.save();
+      this.set('isEditing', false);
+    },    
 
-		// },
+		cancelEditing: function(){
+      var record = this.get('model')
+      record.rollback();
+      this.set('isEditing', false);
+
+		},
 	}
 });
 
+App.UsersNewController = Ember.ObjectController.extend({
+  actions: {
+    save: function(){
+      user = this.store.createRecord('user',{
+        name: this.get('name'),
+        bio: this.get('bio')
+      });
 
+      user.save()
+      
+    },    
+
+    cancel: function(){
+      this.transitionToRoute('users')
+
+    },
+  }
+});
 
