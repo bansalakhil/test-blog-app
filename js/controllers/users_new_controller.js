@@ -6,13 +6,17 @@ App.UsersNewController = Ember.ObjectController.extend({
                 bio: this.get('bio')
             });
             _this = this;
-            user.save().then(function(){
+            user.save().then(
+
+              function(data){
               _this.resetForm();
               _this.transitionToRoute('user', user)
-            }, function(){
+              },
+
+             function(data){
               user.deleteRecord();
               alert('Could not save record')
-            }
+              }
             );
             
         },
