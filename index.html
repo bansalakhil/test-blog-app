@@ -53,9 +53,14 @@
     </script>
     <script type="text/x-handlebars" id='user'>
         <div>
+            <div style='float:right'>
+                <p>
+                    <button {{action deleteRecord}}>Delete</button>
+                </p>
+            </div>
             {{#if isEditing }}
             <p>{{input value=name action='doneEditing'}}</p>
-            <p>{{textarea value=bio rows='10' cols='100' classNames = "wide"}}</p>
+            <p>{{textarea value=bio rows='5' cols='100' classNames = "wide"}}</p>
 
             <p>
                 <button {{action doneEditing}}>Save</button>
@@ -84,7 +89,7 @@
                 <br>{{input value=name action='save'}}</p>
             <p>
                 <b>Bio: </b> 
-                <br>{{textarea value=bio rows='10' cols='100' classNames = "wide"}}</p>
+                <br>{{textarea value=bio rows='5' cols='100' classNames = "wide"}}</p>
 
             <p>
                 <button {{action save}}>Save</button>
@@ -99,6 +104,11 @@
     <script src="/myblog/js/libs/ember-1.5.1.js"></script>
     <script type="text/javascript" src="/myblog/js/libs/ember-data.js"></script>
     <script src="/myblog/js/app.js"></script>
+    <script src="/myblog/js/controllers/user_controller.js"></script>
+    <script src="/myblog/js/controllers/users_new_controller.js"></script>
+    <script src="/myblog/js/models/user.js"></script>
+    <script src="/myblog/js/adapters/user.js"></script>
+
     <!-- to activate the test runner, add the "?test" query string parameter -->
 </body>
 
