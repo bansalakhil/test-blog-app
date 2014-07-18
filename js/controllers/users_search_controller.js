@@ -1,6 +1,6 @@
 App.UsersSearchController = Ember.ArrayController.extend({
 
-  queryParams: ['query'],
+  queryParams: {query: 'q'}, // query is the controller property and 'q' is the key which will be displayed in url like ?q=something
   query: null,
 
   //Set one way binding so that whatever query is put in url, should be populated in the search box
