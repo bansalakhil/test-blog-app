@@ -1,11 +1,13 @@
 App.UsersNewController = Ember.ObjectController.extend({
     actions: {
         save: function() {
+            _this = this;
+            
             user = this.store.createRecord('user', {
                 name: this.get('name'),
                 bio: this.get('bio')
             });
-            _this = this;
+            
             user.save().then(
 
               function(data){

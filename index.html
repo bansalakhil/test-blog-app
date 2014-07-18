@@ -21,14 +21,23 @@
                     <li>
                         {{#link-to 'users.new'}}New User{{/link-to}}
                     </li>
+                    <li>
+                        {{#link-to 'users.search'}}Search Users{{/link-to}}
+                    </li>
                 </ul>
             </div>
         </div>
         {{outlet}}
     </script>
+
+
+
     <script type="text/x-handlebars" id="users/index">
-        <p class="text-warning">Please select a user</p>
+        <h3>Please select a user</h3>
     </script>
+
+
+
     <script type="text/x-handlebars" id='index'>
         <div>
             Welcome to MyBlog
@@ -46,11 +55,20 @@
                     {{/each}}
                 </ol>
             </div>
+
+
             <div style="width: 400px; float:left;">
                 {{outlet}}
             </div>
         </div>
     </script>
+
+
+
+
+
+
+
     <script type="text/x-handlebars" id='user'>
         <div>
             <div style='float:right'>
@@ -82,6 +100,16 @@
             </p>
         </div>
     </script>
+
+
+
+
+
+
+
+
+
+
     <script type="text/x-handlebars" id='users/new'>
         <div>
             <p>
@@ -99,13 +127,44 @@
             </p>
         </div>
     </script>
+
+
+
+    <script type="text/x-handlebars" id='users/search'>
+        <div>
+            <div class='user_search_form'>
+                <h5>Search Users:</h5>
+                <form {{action "search" on='submit' }}>
+                    {{input value=queryField}}
+                    <input type="submit" value="Search" />
+                </form>
+            </div>
+        </div>
+
+        <ul>
+            {{#each filteredUsers}}
+            <li>
+                {{#link-to 'user' this}}{{name}}{{/link-to}}
+            </li>
+            {{/each}}
+        </ul>
+
+    </script>
+
+
+
+
+
+
     <script src="/myblog/js/libs/jquery-1.10.2.js"></script>
     <script src="/myblog/js/libs/handlebars-1.1.2.js"></script>
-    <script src="/myblog/js/libs/ember-1.5.1.js"></script>
+    <script src="/myblog/js/libs/ember-1.7.0-beta.js"></script>
     <script type="text/javascript" src="/myblog/js/libs/ember-data.js"></script>
     <script src="/myblog/js/app.js"></script>
     <script src="/myblog/js/controllers/user_controller.js"></script>
     <script src="/myblog/js/controllers/users_new_controller.js"></script>
+    <script src="/myblog/js/controllers/users_search_controller.js"></script>
+
     <script src="/myblog/js/models/user.js"></script>
     <script src="/myblog/js/adapters/user.js"></script>
 

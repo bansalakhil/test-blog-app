@@ -14,6 +14,7 @@ App.Router.map(function() {
   this.resource('users', function(){
   	this.resource('user', { path: ':user_id' })
     this.route('new')
+    this.route('search')
   });
 });
 
@@ -32,4 +33,14 @@ App.UsersRoute = Ember.Route.extend({
 });
 
 
-
+// If we want to refresh our model when query parameter change we need to do this:
+// App.UsersSearchRoute = Ember.Route.extend({
+//   queryParams: {
+//     query: {
+//       refreshModel: true
+//     }
+//   },
+//   model: function(params) {
+//     return  this.store.find('user');
+//   }
+// });

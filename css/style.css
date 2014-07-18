@@ -6,3 +6,8 @@
 .wide{
 	width: 500px;
 }
+
+div.user_search_form{
+	border-bottom: 2px solid blue;
+	margin-bottom: 30px;
+}
