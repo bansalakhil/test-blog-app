@@ -3,6 +3,7 @@ App.UsersSearchController = Ember.ArrayController.extend({
   queryParams: {query: 'q'}, // query is the controller property and 'q' is the key which will be displayed in url like ?q=something
   query: null,
 
+
   //Set one way binding so that whatever query is put in url, should be populated in the search box
   queryField: Ember.computed.oneWay('query'),
 
@@ -21,11 +22,13 @@ App.UsersSearchController = Ember.ArrayController.extend({
       });
       return filteredUsers;
     } else {
-      return users
+      return users.toArray();
     }
+  }.property('query', 'model.@each', 'model.@each.name'),
 
-
-  }.property('query', 'model'),
+  resultCount: function(){
+    return this.get('filteredUsers').length;
+  }.property('filteredUsers'),
 
   actions: {
     search: function() {
