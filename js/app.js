@@ -28,6 +28,16 @@ App.UsersRoute = Ember.Route.extend({
     // renderTemplate: function() {},
     // beforeModel: function() {},
     // afterModel: function() {},
+    // beforeModel: function(){
+    //   alert('beforeModel called')
+    // },
+
+    afterModel: function(users){
+      var users = users.toArray();
+      if(users.length === 0){
+        this.transitionTo('users.new')
+      }
+    },
 
     model: function() {
         return this.store.find('user');
