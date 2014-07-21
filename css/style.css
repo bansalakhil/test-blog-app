@@ -1,13 +1,21 @@
 /* Put your CSS here */
+
 .ember-application {
     margin: 20px;
 }
-
-.wide{
-	width: 500px;
+.wide {
+    width: 500px;
 }
-
-div.user_search_form{
-	border-bottom: 2px solid blue;
-	margin-bottom: 30px;
+div.user_search_form {
+    border-bottom: 2px solid blue;
+    margin-bottom: 30px;
+}
+div.loading {
+    background: red;
+    padding: 2px 5px;
+    color: white;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    left: 90%;
 }
