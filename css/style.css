@@ -1,34 +1,34 @@
 /* Put your CSS here */
 
 .ember-application {
-    margin: 20px;
+  margin: 20px;
 }
 .wide {
-    width: 500px;
+  width: 500px;
 }
 div.user_search_form {
-    border-bottom: 2px solid blue;
-    margin-bottom: 30px;
+  border-bottom: 2px solid blue;
+  margin-bottom: 30px;
 }
 div.loading {
-    background: red;
-    padding: 2px 5px;
-    color: white;
-    font-weight: bold;
-    position: absolute;
-    top: 10px;
-    left: 90%;
+  background: red;
+  padding: 2px 5px;
+  color: white;
+  font-weight: bold;
+  position: absolute;
+  top: 10px;
+  left: 90%;
 }
-
-div.user_post_excerpt{
-    padding: 10px;
-    background: #eee;
-    margin: 10px;
-    border: 1px solid grey;
-    width: 100%;
+div.user_post_excerpt {
+  padding: 10px;
+  background: #eee;
+  margin: 10px;
+  border: 1px solid grey;
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 5px 5px 5px #888888;
 }
-
-p.timestamp{
-    font-size: smaller;
-    margin-top: 20px;
+p.timestamp {
+  font-size: smaller;
+  margin-top: 20px;
 }
