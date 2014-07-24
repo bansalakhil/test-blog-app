@@ -24,6 +24,9 @@
           <li>
             {{#link-to 'users.search'}}Search Users{{/link-to}}
           </li>
+          <li>
+            {{#link-to 'posts'}}Posts{{/link-to}}
+          </li>          
         </ul>
       </div>
     </div>
@@ -160,9 +163,42 @@
   </script>
 
 
+
+  <script type="text/x-handlebars" id='posts'>
+    <div>
+      {{#if length }}
+       {{#each model}}
+          {{post-details post=this}}
+       {{/each}}
+      {{else}}
+        No Posts Yet...
+      {{/if}}
+    </div>
+  </script>
+
+
+
 <!-- Components templates start -->
   <script type="text/x-handlebars" id="components/post-excerpt">
     <h5>{{post.title}}</h5>
+    <p class='small'>{{post.user.name}}</p>
+    <p>
+    <b>Excerpt:</b><br>
+    <div>{{post.excerpt}}</div>
+    <div><button {{action "toggleContent"}}>Toggle Content</button></div>
+    </p>
+    {{#if displayContent}}
+      <b>Content:</b><br>
+      <p>{{post.content}}</p>
+    {{/if}}  
+    <a {{bind-attr href='post.url' }} target='_blank'>{{post.url}}</a>
+    <p class = 'timestamp'>{{post.updated_at}}</p>
+  </script>
+
+
+  <script type="text/x-handlebars" id="components/post-details">
+    <h5>{{post.title}}</h5>
+    <p class='small'>{{post.user.name}}</p>
     <p>
     <b>Excerpt:</b><br>
     <div>{{post.excerpt}}</div>
@@ -218,6 +254,7 @@
   <script src="/myblog/js/adapters/post.js"></script>
 
   <script src="/myblog/js/components/post_excerpt.js"></script>
+  <script src="/myblog/js/components/post_details.js"></script>
 
 
   <!-- to activate the test runner, add the "?test" query string parameter -->

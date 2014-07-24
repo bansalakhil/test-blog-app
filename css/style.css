@@ -32,3 +32,13 @@ p.timestamp {
   font-size: smaller;
   margin-top: 20px;
 }
+
+div.user_post_details {
+  padding: 10px;
+  background: #eee;
+  margin: 10px;
+  border: 1px solid grey;
+  width: 90%;
+  border-radius: 10px;
+  box-shadow: 5px 5px 5px #888888;
+}

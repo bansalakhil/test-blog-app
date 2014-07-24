@@ -18,6 +18,10 @@ App.Router.map(function() {
         this.route('new')
         this.route('search')
     });
+
+    this.resource('posts', function(){
+
+    });
 });
 
 
@@ -32,12 +36,12 @@ App.UsersRoute = Ember.Route.extend({
     //   alert('beforeModel called')
     // },
 
-    afterModel: function(users){
-      var users = users.toArray();
-      if(users.length === 0){
-        this.transitionTo('users.new')
-      }
-    },
+    // afterModel: function(posts){
+    //   var posts = posts.toArray();
+    //   if(posts.length === 0){
+    //     this.transitionTo('posts.new')
+    //   }
+    // },
 
     model: function() {
         return this.store.find('user');
@@ -54,5 +58,32 @@ App.UsersSearchRoute = Ember.Route.extend({
     // },
     model: function(params) {
         return this.modelFor('users');
+    }
+});
+
+
+
+
+
+App.PostsRoute = Ember.Route.extend({
+    // activate: function() {},
+    // deactivate: function() {},
+    // setupController: function(controller, model) {},
+    // renderTemplate: function() {},
+    // beforeModel: function() {},
+    // afterModel: function() {},
+    // beforeModel: function(){
+    //   alert('beforeModel called')
+    // },
+
+    // afterModel: function(users){
+    //   var users = users.toArray();
+    //   if(users.length === 0){
+    //     this.transitionTo('users.new')
+    //   }
+    // },
+
+    model: function() {
+        return this.store.find('post');
     }
 });
