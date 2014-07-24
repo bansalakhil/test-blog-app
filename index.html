@@ -2,178 +2,216 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <title>MyBlog</title>
-    <link rel="stylesheet" href="/myblog/css/normalize.css">
-    <link rel="stylesheet" href="/myblog/css/style.css">
-    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+  <meta charset="utf-8">
+  <title>MyBlog</title>
+  <link rel="stylesheet" href="/myblog/css/normalize.css">
+  <link rel="stylesheet" href="/myblog/css/style.css">
+  <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
 </head>
 
 <body>
-    <script type="text/x-handlebars">
-        <div class="navbar">
-            <div class="navbar-inner">
-                <a class="brand" href="#">MyBlog</a>
-                <ul class="nav">
-                    <li>
-                        {{#link-to 'users'}}Users{{/link-to}}
-                    </li>
-                    <li>
-                        {{#link-to 'users.new'}}New User{{/link-to}}
-                    </li>
-                    <li>
-                        {{#link-to 'users.search'}}Search Users{{/link-to}}
-                    </li>
-                </ul>
-            </div>
-        </div>
-        {{outlet}}
-    </script>
-
-
-
-    <script type="text/x-handlebars" id="users/index">
-        <h3>Please select a user</h3>
-    </script>
-
-
-
-    <script type="text/x-handlebars" id='index'>
-        <div>
-            Welcome to MyBlog
-        </div>
-    </script>
-
-    <script type="text/x-handlebars" id='users'>
-        <div>
-            <div style="width: 200px; float:left;">
-                <ol>
-                    {{#each}}
-                    <li>
-                        {{#link-to 'user' this}}{{name}}{{/link-to}}
-                    </li>
-                    {{/each}}
-                </ol>
-            </div>
-
-
-            <div style="width: 400px; float:left;">
-                {{outlet}}
-            </div>
-        </div>
-    </script>
-
-
-
-
-
-
-
-    <script type="text/x-handlebars" id='user'>
-        <div>
-            <div style='float:right'>
-                <p>
-                    <button {{action deleteRecord}}>Delete</button>
-                </p>
-            </div>
-            {{#if isEditing }}
-            <p>{{input value=name action='doneEditing'}}</p>
-            <p>{{textarea value=bio rows='5' cols='100' classNames = "wide"}}</p>
-
-            <p>
-                <button {{action doneEditing}}>Save</button>
-            </p>
-            <p>
-                <button {{action cancelEditing}}>Cancel</button>
-            </p>
-            {{else}}
-            <div style='float:right'>
-                <button {{action edit}}>Edit</button>
-            </div>
-            {{/if}}
-
-            <p><b>{{name}}</b>
-            </p>
-            <p><b>Bio:</b>
-            </p>
-            <p>{{bio}}</p>
-            <p><a {{bind-attr href='url' }} target='_blank'>{{url}}</a> 
-            </p>
-            
-        </div>
-    </script>
-
-
-
-
-
-
-
-
-
-
-    <script type="text/x-handlebars" id='users/new'>
-        <div>
-            <p>
-                <b>Name:</b>
-                <br>{{input value=name action='save'}}</p>
-            <p>
-                <b>Bio: </b> 
-                <br>{{textarea value=bio rows='5' cols='100' classNames = "wide"}}</p>
-
-            <p>
-                <button {{action save}}>Save</button>
-            </p>
-            <p>
-                <button {{action cancel}}>Cancel</button>
-            </p>
-        </div>
-    </script>
-
-
-
-    <script type="text/x-handlebars" id='users/search'>
-        <div>
-            <div class='user_search_form'>
-                <h5>Search Users:</h5>
-                <form {{action "search" on='submit' }}>
-                    {{input value=queryField}}
-                    <input type="submit" value="Search" />
-                </form>
-            </div>
-        </div>
-        <p>{{resultCount}} Records</p>
-        <hr>
-        <ul>
-            {{#each filteredUsers}}
-            <li>
-                {{#link-to 'user' this}}{{name}}{{/link-to}}
-            </li>
-            {{/each}}
+  <script type="text/x-handlebars">
+    <div class="navbar">
+      <div class="navbar-inner">
+        <a class="brand" href="#">MyBlog</a>
+        <ul class="nav">
+          <li>
+            {{#link-to 'users'}}Users{{/link-to}}
+          </li>
+          <li>
+            {{#link-to 'users.new'}}New User{{/link-to}}
+          </li>
+          <li>
+            {{#link-to 'users.search'}}Search Users{{/link-to}}
+          </li>
         </ul>
-
-    </script>
-
-    <script type="text/x-handlebars" id='loading'>
-        <div class = 'loading'>Loading...</div>
-    </script>
+      </div>
+    </div>
+    {{outlet}}
+  </script>
 
 
 
+  <script type="text/x-handlebars" id="users/index">
+    <h3>Please select a user</h3>
+  </script>
 
-    <script src="/myblog/js/libs/jquery-1.10.2.js"></script>
-    <script src="/myblog/js/libs/handlebars-1.1.2.js"></script>
-    <script src="/myblog/js/libs/ember-1.7.0-beta.js"></script>
-    <script type="text/javascript" src="/myblog/js/libs/ember-data.js"></script>
-    <script src="/myblog/js/app.js"></script>
-    <script src="/myblog/js/controllers/user_controller.js"></script>
-    <script src="/myblog/js/controllers/users_new_controller.js"></script>
-    <script src="/myblog/js/controllers/users_search_controller.js"></script>
 
-    <script src="/myblog/js/models/user.js"></script>
-    <script src="/myblog/js/adapters/user.js"></script>
 
-    <!-- to activate the test runner, add the "?test" query string parameter -->
+  <script type="text/x-handlebars" id='index'>
+    <div>
+      Welcome to MyBlog
+    </div>
+  </script>
+
+  <script type="text/x-handlebars" id='users'>
+    <div>
+      <div style="width: 200px; float:left;">
+        <ol>
+          {{#each}}
+          <li>
+            {{#link-to 'user' this}}{{name}}{{/link-to}} ({{posts.length}})
+          </li>
+          {{/each}}
+        </ol>
+      </div>
+
+
+      <div style="width: 400px; float:left;">
+        {{outlet}}
+      </div>
+    </div>
+  </script>
+
+
+
+
+
+
+
+  <script type="text/x-handlebars" id='user'>
+    <div>
+      <div style='float:right'>
+        <p>
+          <button {{action deleteRecord}}>Delete</button>
+        </p>
+      </div>
+      {{#if isEditing }}
+      <p>{{input value=name action='doneEditing'}}</p>
+      <p>{{textarea value=bio rows='5' cols='100' classNames = "wide"}}</p>
+
+      <p>
+        <button {{action doneEditing}}>Save</button>
+      </p>
+      <p>
+        <button {{action cancelEditing}}>Cancel</button>
+      </p>
+      {{else}}
+      <div style='float:right'>
+        <button {{action edit}}>Edit</button>
+      </div>
+      {{/if}}
+
+      <p><b>{{name}}</b>
+      </p>
+      <p><b>Bio:</b>
+      </p>
+      <p>{{bio}}</p>
+      <p><a {{bind-attr href='url' }} target='_blank'>{{url}}</a> 
+      </p>
+      
+      {{partial 'user_post_excerpt'}}
+    </div>
+  </script>
+
+
+
+
+
+
+
+
+
+
+  <script type="text/x-handlebars" id='users/new'>
+    <div>
+      <p>
+        <b>Name:</b>
+        <br>{{input value=name action='save'}}</p>
+      <p>
+        <b>Bio: </b> 
+        <br>{{textarea value=bio rows='5' cols='100' classNames = "wide"}}</p>
+
+      <p>
+        <button {{action save}}>Save</button>
+      </p>
+      <p>
+        <button {{action cancel}}>Cancel</button>
+      </p>
+    </div>
+  </script>
+
+
+
+  <script type="text/x-handlebars" id='users/search'>
+    <div>
+      <div class='user_search_form'>
+        <h5>Search Users:</h5>
+        <form {{action "search" on='submit' }}>
+          {{input value=queryField}}
+          <input type="submit" value="Search" />
+        </form>
+      </div>
+    </div>
+    <p>{{resultCount}} Records</p>
+    <hr>
+    <ul>
+      {{#each filteredUsers}}
+      <li>
+        {{#link-to 'user' this}}{{name}}{{/link-to}}
+      </li>
+      {{/each}}
+    </ul>
+
+  </script>
+
+  <script type="text/x-handlebars" id='loading'>
+    <div class = 'loading'>Loading...</div>
+  </script>
+
+
+<!-- Components templates start -->
+  <script type="text/x-handlebars" id="components/post-excerpt">
+    <h5>{{post.title}}</h5>
+    <p>{{post.excerpt}}</p>
+    <p class = 'timestamp'>{{post.updated_at}}</p>
+  </script>
+
+<!-- Components templates end -->
+
+
+<!-- Partials start -->
+
+
+  <script type="text/x-handlebars" id='_user_post_excerpt'>
+      
+      <div>
+        <h4><b>Posts({{posts.length}}):</b> </h4>
+        <div>
+        {{#if posts.length}}
+          {{#each post in posts}}
+            {{post-excerpt post=post }}
+          {{/each}}
+        {{else}}
+          No posts...
+        {{/if}}
+        </div>
+      </div>
+  </script>
+
+
+<!-- Partials ends -->
+
+
+  <script src="/myblog/js/libs/jquery-1.10.2.js"></script>
+  <script src="/myblog/js/libs/handlebars-1.1.2.js"></script>
+  <script src="/myblog/js/libs/ember-1.7.0-beta.js"></script>
+  <script type="text/javascript" src="/myblog/js/libs/ember-data.js"></script>
+  <script src="/myblog/js/app.js"></script>
+  <script src="/myblog/js/controllers/user_controller.js"></script>
+  <script src="/myblog/js/controllers/users_new_controller.js"></script>
+  <script src="/myblog/js/controllers/users_search_controller.js"></script>
+
+  <script src="/myblog/js/models/user.js"></script>
+  <script src="/myblog/js/models/post.js"></script>
+
+  <script src="/myblog/js/adapters/user.js"></script>
+  <script src="/myblog/js/adapters/post.js"></script>
+
+  <script src="/myblog/js/components/post_excerpt.js"></script>
+
+
+  <!-- to activate the test runner, add the "?test" query string parameter -->
 </body>
 
 </html>

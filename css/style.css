@@ -19,3 +19,16 @@ div.loading {
     top: 10px;
     left: 90%;
 }
+
+div.user_post_excerpt{
+    padding: 10px;
+    background: #eee;
+    margin: 10px;
+    border: 1px solid grey;
+    width: 100%;
+}
+
+p.timestamp{
+    font-size: smaller;
+    margin-top: 20px;
+}
