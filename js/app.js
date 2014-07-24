@@ -1,7 +1,7 @@
 App = Ember.Application.create();
 
 // Overwrite applictoin serializer so that it won't send attributes marked as readonly to server.
-App.ApplicationSerializer = DS.RESTSerializer.extend({
+App.ApplicationSerializer = DS.ActiveModelSerializer.extend({
     serializeAttribute: function(record, json, key, attribute) {
         if (!attribute.options.readOnly) {
             return this._super(record, json, key, attribute);

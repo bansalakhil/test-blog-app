@@ -1,3 +1,3 @@
-App.UserAdapter = DS.RESTAdapter.extend({
+App.UserAdapter = DS.ActiveModelAdapter.extend({
   host: 'http://localhost:3000'
 });
