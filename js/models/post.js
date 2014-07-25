@@ -5,5 +5,5 @@ App.Post = DS.Model.extend({
   updated_at: DS.attr('date'),
   url: DS.attr('string', {readOnly: true}),
 
-  user: DS.belongsTo('user')
+  user: DS.belongsTo('user' )
 })

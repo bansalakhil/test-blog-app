@@ -2,63 +2,67 @@ App = Ember.Application.create();
 
 // Overwrite applictoin serializer so that it won't send attributes marked as readonly to server.
 App.ApplicationSerializer = DS.ActiveModelSerializer.extend({
-    serializeAttribute: function(record, json, key, attribute) {
-        if (!attribute.options.readOnly) {
-            return this._super(record, json, key, attribute);
-        }
+  serializeAttribute: function(record, json, key, attribute) {
+    if (!attribute.options.readOnly) {
+      return this._super(record, json, key, attribute);
     }
+  }
 });
 
 App.Router.map(function() {
-    // put your routes here
-    this.resource('users', function() {
-        this.resource('user', {
-            path: ':user_id'
-        })
-        this.route('new')
-        this.route('search')
-    });
+  // put your routes here
+  this.resource('users', function() {
+    this.resource('user', {
+      path: ':user_id'
+    })
+    this.route('new')
+    this.route('search')
+  });
 
-    this.resource('posts', function(){
+  this.resource('posts', function() {
 
-    });
+  });
 });
 
 
 App.UsersRoute = Ember.Route.extend({
-    // activate: function() {},
-    // deactivate: function() {},
-    // setupController: function(controller, model) {},
-    // renderTemplate: function() {},
-    // beforeModel: function() {},
-    // afterModel: function() {},
-    // beforeModel: function(){
-    //   alert('beforeModel called')
-    // },
+  // activate: function() {},
+  // deactivate: function() {},
+  // setupController: function(controller, model) {},
+  // renderTemplate: function() {},
+  // beforeModel: function() {},
+  // afterModel: function() {},
+  // beforeModel: function(){
+  //   alert('beforeModel called')
+  // },
 
-    // afterModel: function(posts){
-    //   var posts = posts.toArray();
-    //   if(posts.length === 0){
-    //     this.transitionTo('posts.new')
-    //   }
-    // },
-
-    model: function() {
-        return this.store.find('user');
+  afterModel: function(users) {
+    var users = users.toArray();
+    if (users.length === 0) {
+      this.transitionTo('users.new')
     }
+  },
+
+  model: function() {
+    if (this.controller && this.controller.get('content')) {
+      return this.controller.get('content');
+    }
+
+    return this.store.find('user');
+  }
 });
 
 
 App.UsersSearchRoute = Ember.Route.extend({
-    // If we want to refresh our model when query parameter change we need to do this:
-    // queryParams: {
-    //     query: {
-    //         refreshModel: true
-    //     }
-    // },
-    model: function(params) {
-        return this.modelFor('users');
-    }
+  // If we want to refresh our model when query parameter change we need to do this:
+  // queryParams: {
+  //     query: {
+  //         refreshModel: true
+  //     }
+  // },
+  model: function(params) {
+    return this.modelFor('users');
+  }
 });
 
 
@@ -66,24 +70,28 @@ App.UsersSearchRoute = Ember.Route.extend({
 
 
 App.PostsRoute = Ember.Route.extend({
-    // activate: function() {},
-    // deactivate: function() {},
-    // setupController: function(controller, model) {},
-    // renderTemplate: function() {},
-    // beforeModel: function() {},
-    // afterModel: function() {},
-    // beforeModel: function(){
-    //   alert('beforeModel called')
-    // },
+  // activate: function() {},
+  // deactivate: function() {},
+  // setupController: function(controller, model) {},
+  // renderTemplate: function() {},
+  // beforeModel: function() {},
+  // afterModel: function() {},
+  // beforeModel: function(){
+  //   alert('beforeModel called')
+  // },
 
-    // afterModel: function(users){
-    //   var users = users.toArray();
-    //   if(users.length === 0){
-    //     this.transitionTo('users.new')
-    //   }
-    // },
+  // afterModel: function(posts){
+  //   var posts = posts.toArray();
+  //   if(posts.length === 0){
+  //     this.transitionTo('posts.new')
+  //   }
+  // },
 
-    model: function() {
-        return this.store.find('post');
+  model: function() {
+    if (this.controller && this.controller.get('content')) {
+      return this.controller.get('content');
     }
+
+    return this.store.find('post');
+  }
 });

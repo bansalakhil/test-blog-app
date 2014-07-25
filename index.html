@@ -167,7 +167,7 @@
   <script type="text/x-handlebars" id='posts'>
     <div>
       {{#if length }}
-       {{#each model}}
+       {{#each controller}}
           {{post-details post=this}}
        {{/each}}
       {{else}}
@@ -197,19 +197,12 @@
 
 
   <script type="text/x-handlebars" id="components/post-details">
-    <h5>{{post.title}}</h5>
-    <p class='small'>{{post.user.name}}</p>
-    <p>
-    <b>Excerpt:</b><br>
-    <div>{{post.excerpt}}</div>
-    <div><button {{action "toggleContent"}}>Toggle Content</button></div>
-    </p>
-    {{#if displayContent}}
-      <b>Content:</b><br>
-      <p>{{post.content}}</p>
-    {{/if}}  
-    <a {{bind-attr href='post.url' }} target='_blank'>{{post.url}}</a>
-    <p class = 'timestamp'>{{post.updated_at}}</p>
+    <h3><a {{bind-attr href='post.url' }} target='_blank'>{{post.id}}{{post.title}}</a></h3>
+    <p class = 'timestamp'>By {{post.user.name}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{post.updated_at}}</p>
+    <br>
+    <p>{{post.content}}</p>
+    
+    
   </script>
 
 <!-- Components templates end -->
@@ -243,9 +236,12 @@
   <script src="/myblog/js/libs/ember-1.7.0-beta.js"></script>
   <script type="text/javascript" src="/myblog/js/libs/ember-data.js"></script>
   <script src="/myblog/js/app.js"></script>
+
   <script src="/myblog/js/controllers/user_controller.js"></script>
   <script src="/myblog/js/controllers/users_new_controller.js"></script>
   <script src="/myblog/js/controllers/users_search_controller.js"></script>
+  <script src="/myblog/js/controllers/posts_controller.js"></script>
+
 
   <script src="/myblog/js/models/user.js"></script>
   <script src="/myblog/js/models/post.js"></script>
