@@ -1,5 +1,6 @@
 App.PostsController = Ember.ArrayController.extend({
-  sortProperties: ['id'],
+  
+  sortProperties: ['updated_at'],
   sortAscending: false,
 
 
