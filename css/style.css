@@ -42,3 +42,13 @@ div.user_post_details {
   border-radius: 10px;
   box-shadow: 5px 5px 5px #888888;
 }
+
+div.new_post {
+  padding: 10px;
+  background: #f9fffb;
+  margin: 10px;
+  border: 1px solid grey;
+  width: 90%;
+  border-radius: 10px;
+  box-shadow: 5px 5px 5px #888888;
+}

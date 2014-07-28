@@ -6,7 +6,7 @@
   <title>MyBlog</title>
   <link rel="stylesheet" href="/myblog/css/normalize.css">
   <link rel="stylesheet" href="/myblog/css/style.css">
-  <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+  <link href="/myblog/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -26,7 +26,10 @@
           </li>
           <li>
             {{#link-to 'posts'}}Posts{{/link-to}}
-          </li>          
+          </li>    
+          <li>
+            {{#link-to 'posts.new'}}New Post{{/link-to}}
+          </li>
         </ul>
       </div>
     </div>
@@ -165,6 +168,7 @@
 
 
   <script type="text/x-handlebars" id='posts'>
+      {{outlet}}
     <div>
       {{#if length }}
        {{#each controller}}
@@ -173,6 +177,37 @@
       {{else}}
         No Posts Yet...
       {{/if}}
+    </div>
+  </script>
+
+
+
+  <script type="text/x-handlebars" id='posts/new'>
+    <div class = 'new_post'>
+      <p>
+        <b>Title:</b>
+        <br>{{input value=title action='save'}}</p>
+      <p>
+        <b>Excerpt: </b> 
+        <br>{{textarea value=excerpt rows='5' cols='100' classNames = "wide"}}</p>
+      <p>
+        <b>Content: </b> 
+        <br>{{textarea value=body rows='5' cols='100' classNames = "wide"}}</p>
+      <p>
+        <b>User: </b> 
+        <br>
+        {{view Ember.Select viewName="select"
+                            content= users
+                            optionLabelPath="content.name"
+                            optionValuePath="content.id"
+                          
+                            }}        
+      </p>        
+      <p>
+        <button {{action save}}>Save</button>
+
+        <button {{action cancel}}>Cancel</button>
+      </p>
     </div>
   </script>
 
@@ -197,8 +232,12 @@
 
 
   <script type="text/x-handlebars" id="components/post-details">
-    <h3><a {{bind-attr href='post.url' }} target='_blank'>{{post.id}}{{post.title}}</a></h3>
-    <p class = 'timestamp'>By {{post.user.name}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{post.updated_at}}</p>
+    <h3><a {{bind-attr href='post.url' }} target='_blank'>{{post.id}} {{post.title}}</a></h3>
+    <p class = 'timestamp'>
+      By {{post.user.name}} 
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+         {{post.updated_at}}
+    </p>
     <br>
     <p>{{post.content}}</p>
     
@@ -238,9 +277,11 @@
   <script src="/myblog/js/app.js"></script>
 
   <script src="/myblog/js/controllers/user_controller.js"></script>
+  <script src="/myblog/js/controllers/users_controller.js"></script>
   <script src="/myblog/js/controllers/users_new_controller.js"></script>
   <script src="/myblog/js/controllers/users_search_controller.js"></script>
   <script src="/myblog/js/controllers/posts_controller.js"></script>
+  <script src="/myblog/js/controllers/posts_new_controller.js"></script>
 
 
   <script src="/myblog/js/models/user.js"></script>
