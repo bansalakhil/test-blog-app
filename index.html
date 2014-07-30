@@ -48,6 +48,8 @@
     <div>
       Welcome to MyBlog
     </div>
+
+    <p>{{google-maps latitude="28.655280099999995" longitude="77.1675008"}}</p>
   </script>
 
   <script type="text/x-handlebars" id='users'>
@@ -175,7 +177,7 @@
           {{post-details post=this}}
        {{/each}}
       {{else}}
-        No Posts Yet...
+        No Posts Yet... Lets create a few {{#link-to 'posts.new'}}here{{/link-to}}
       {{/if}}
     </div>
   </script>
@@ -244,8 +246,12 @@
     </p>
     <br>
     <p>{{post.content}}</p>
-    
-    
+  </script>
+
+
+  <script type="text/x-handlebars" id="components/google-maps">
+    <div class="map-canvas">
+    </div>
   </script>
 
 <!-- Components templates end -->
@@ -264,7 +270,7 @@
             {{post-excerpt post=post }}
           {{/each}}
         {{else}}
-          No posts...
+          No posts... andLets create a few {{#link-to 'posts.new'}}here{{/link-to}}
         {{/if}}
         </div>
       </div>
@@ -296,6 +302,10 @@
 
   <script src="/myblog/js/components/post_excerpt.js"></script>
   <script src="/myblog/js/components/post_details.js"></script>
+  <script src="/myblog/js/components/google_maps.js"></script>
+
+
+  <script src="http://maps.googleapis.com/maps/api/js?v=3"></script>
 
 
   <!-- to activate the test runner, add the "?test" query string parameter -->

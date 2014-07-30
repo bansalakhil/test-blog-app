@@ -2,6 +2,7 @@ App = Ember.Application.create({
   LOG_TRANSITIONS: true,
 });
 
+
 // Overwrite applictoin serializer so that it won't send attributes marked as readonly to server.
 App.ApplicationSerializer = DS.ActiveModelSerializer.extend({
   serializeAttribute: function(record, json, key, attribute) {
@@ -100,14 +101,14 @@ App.PostsRoute = Ember.Route.extend({
 
 
 App.PostsNewRoute = Ember.Route.extend({
-    model: function() {
-      var users = this.controllerFor('users').get('content');
-      if(users.get('length') == 0){
-        users = this.store.find('user');
-      }
-
-      return {
-        users: users,
-      };
+  model: function() {
+    var users = this.controllerFor('users').get('content');
+    if (users.get('length') == 0) {
+      users = this.store.find('user');
     }
+
+    return {
+      users: users,
+    };
+  }
 });

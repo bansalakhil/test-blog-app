@@ -52,3 +52,8 @@ div.new_post {
   border-radius: 10px;
   box-shadow: 5px 5px 5px #888888;
 }
+
+.map-canvas {
+  width: 800px;
+  height: 600px;
+}
