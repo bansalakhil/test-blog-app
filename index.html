@@ -6,11 +6,15 @@
   <title>MyBlog</title>
   <link rel="stylesheet" href="/myblog/css/normalize.css">
   <link rel="stylesheet" href="/myblog/css/style.css">
+  <link rel="stylesheet" href="/myblog/css/notification.css">
+
   <link href="/myblog/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
 </head>
 
 <body>
   <script type="text/x-handlebars">
+    {{view App.NotificationContainerView}}
+
     <div class="navbar">
       <div class="navbar-inner">
         <a class="brand" href="#">MyBlog</a>
@@ -279,6 +283,19 @@
 
 <!-- Partials ends -->
 
+<script type="text/x-handlebars" data-template-name="notification">
+  <i class="{{unbound view.iconType}} icon"></i>
+  <a class="close-notification" {{action "close" target="view"}}>
+    <i class="icon-remove">x</i>
+  </a>
+  <strong>
+    {{view.content.title}}
+  </strong>
+  <p>
+    {{view.content.message}}
+  </p>
+</script>
+
 
   <script src="/myblog/js/libs/jquery-1.10.2.js"></script>
   <script src="/myblog/js/libs/handlebars-1.1.2.js"></script>
@@ -292,6 +309,7 @@
   <script src="/myblog/js/controllers/users_search_controller.js"></script>
   <script src="/myblog/js/controllers/posts_controller.js"></script>
   <script src="/myblog/js/controllers/posts_new_controller.js"></script>
+  <script src="/myblog/js/controllers/application_controller.js"></script>
 
 
   <script src="/myblog/js/models/user.js"></script>
@@ -306,6 +324,10 @@
 
 
   <script src="http://maps.googleapis.com/maps/api/js?v=3"></script>
+
+
+  <script src="/myblog/js/views/notification_container.js"></script>
+  <script src="/myblog/js/views/notification.js"></script>
 
 
   <!-- to activate the test runner, add the "?test" query string parameter -->
