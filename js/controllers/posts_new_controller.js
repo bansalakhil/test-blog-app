@@ -20,7 +20,6 @@ App.PostsNewController = Ember.ObjectController.extend({
       post.save().then(
 
         function(data) {
-          post.deleteRecord();
 
           _this.notifySuccess(post);
           _this.resetForm();
@@ -30,7 +29,6 @@ App.PostsNewController = Ember.ObjectController.extend({
         function(data) {
           _this.notifyFailure(post);
           post.deleteRecord();
-          alert('Could not save record')
         }
       );
 
