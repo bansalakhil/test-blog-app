@@ -9,6 +9,8 @@
   <link rel="stylesheet" href="/myblog/css/notification.css">
 
   <link href="/myblog/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+  <link href="/myblog/css/chosen.min.css" rel="stylesheet">
+
 </head>
 
 <body>
@@ -203,6 +205,15 @@
       <p>
         <b>User: </b> 
         <br>
+<div>        {{view Ember.ChosenSelectView
+                                     content=users
+                                     optionValuePath="content.id"
+                                     optionLabelPath="content.name"
+                                     viewName="chosenView"
+                                     value=someVar
+                                     selectionBinding="selectedUser"
+                                     placeholder_text_single="Select an Option..."
+                                   }}   </div>          
         {{view Ember.Select viewName="select"
                             content= users
                             optionLabelPath="content.name"
@@ -210,8 +221,10 @@
                             selectionBinding="selectedUser"
                             prompt = "Please select a user"
                             required = true
-                            }}        
+                            }}      
+
       </p>        
+                         
       <p>
         <button type = 'submit'>Save</button>
 
@@ -301,6 +314,9 @@
   <script src="/myblog/js/libs/handlebars-1.1.2.js"></script>
   <script src="/myblog/js/libs/ember-1.7.0-beta.js"></script>
   <script type="text/javascript" src="/myblog/js/libs/ember-data.js"></script>
+  <script src="/myblog/js/libs/chosen.jquery.min.js"></script>
+  <script src="/myblog/js/libs/chosen.proto.min.js"></script>
+
   <script src="/myblog/js/app.js"></script>
 
   <script src="/myblog/js/controllers/user_controller.js"></script>
@@ -328,6 +344,7 @@
 
   <script src="/myblog/js/views/notification_container.js"></script>
   <script src="/myblog/js/views/notification.js"></script>
+  <script src="/myblog/js/views/ember.chosenselectview.js"></script>
 
 
   <!-- to activate the test runner, add the "?test" query string parameter -->
