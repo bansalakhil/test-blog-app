@@ -38,6 +38,7 @@
       </div>
     </div>
     {{outlet}}
+    {{view  'footer'}}
   </script>
 
 
@@ -283,6 +284,8 @@
 
 <!-- Partials ends -->
 
+<!-- view templates start -->
+
 <script type="text/x-handlebars" data-template-name="notification">
   <i class="{{unbound view.iconType}} icon"></i>
   <a class="close-notification" {{action "close" target="view"}}>
@@ -295,6 +298,13 @@
     {{view.content.message}}
   </p>
 </script>
+
+<script type="text/x-handlebars" data-template-name="footer">
+  This is footer view. Current date-time is: {{view.currentTime}}
+</script>
+
+
+<!-- view templates ends -->
 
 
   <script src="/myblog/js/libs/jquery-1.10.2.js"></script>
@@ -328,6 +338,7 @@
 
   <script src="/myblog/js/views/notification_container.js"></script>
   <script src="/myblog/js/views/notification.js"></script>
+  <script src="/myblog/js/views/footer.js"></script>
 
 
   <!-- to activate the test runner, add the "?test" query string parameter -->
