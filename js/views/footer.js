@@ -1,7 +1,8 @@
 App.FooterView = Ember.View.extend({
-
+    layoutName: 'footer_layout',
     templateName: 'footer',
     currentTime: null,
+
     setCurrentTime: function(){
      // debugger
      setInterval(function(){
