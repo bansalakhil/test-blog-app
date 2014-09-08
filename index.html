@@ -7,6 +7,8 @@
   <link rel="stylesheet" href="/myblog/css/normalize.css">
   <link rel="stylesheet" href="/myblog/css/style.css">
   <link rel="stylesheet" href="/myblog/css/notification.css">
+  <link rel="stylesheet" href="/myblog/css/image_loader.css">
+
 
   <link href="/myblog/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
 </head>
@@ -202,6 +204,10 @@
         <b>Content: </b> 
         <br>{{textarea value=body rows='5' cols='100' classNames = "wide" required = true}}</p>
       <p>
+      <p>
+        <b>ImageURL: </b> 
+        <br>{{input value=image_url classNames = "wide" required = true}}</p>
+      <p>      
         <b>User: </b> 
         <br>
         {{view Ember.Select viewName="select"
@@ -237,6 +243,7 @@
       <b>Content:</b><br>
       <p>{{post.content}}</p>
     {{/if}}  
+    {{image-loader src=post.image_url}}
     <a {{bind-attr href='post.url' }} target='_blank'>{{post.url}}</a>
     <p class = 'timestamp'>{{post.updated_at}}</p>
   </script>
@@ -253,6 +260,18 @@
     <p>{{post.content}}</p>
   </script>
 
+  <script type="text/x-handlebars" data-template-name="components/image-loader">
+    <div class="css_spinner">
+        <div class="half left">
+         <div class="band">
+         </div>
+        </div>
+      <div class="half right">
+        <div class="band"></div>
+      </div>
+    </div>
+    <img {{bind-attr src=src}} />
+  </script>
 
   <script type="text/x-handlebars" id="components/google-maps">
     <div class="map-canvas">
@@ -339,6 +358,7 @@
   <script src="/myblog/js/components/post_excerpt.js"></script>
   <script src="/myblog/js/components/post_details.js"></script>
   <script src="/myblog/js/components/google_maps.js"></script>
+  <script src="/myblog/js/components/image_loader.js"></script>
 
 
   <script src="http://maps.googleapis.com/maps/api/js?v=3"></script>

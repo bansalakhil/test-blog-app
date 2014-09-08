@@ -2,6 +2,7 @@ App = Ember.Application.create({
   LOG_TRANSITIONS: true,
 });
 
+App.PostDefaultImageURL = 'http://lorempixel.com/1920/1920/nature/';
 
 // Overwrite applictoin serializer so that it won't send attributes marked as readonly to server.
 App.ApplicationSerializer = DS.ActiveModelSerializer.extend({

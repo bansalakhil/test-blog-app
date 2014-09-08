@@ -11,3 +11,4 @@ App.PostExcerptComponent = Ember.Component.extend({
   }
 
 })
+

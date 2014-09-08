@@ -1,6 +1,6 @@
 App.PostsNewController = Ember.ObjectController.extend({
   needs: ['application'],
-
+  image_url: App.PostDefaultImageURL +  Math.floor((Math.random() * 10) + 1),
   isEditing: false,
   selectedUser: null,
   // needs: ["users"],
@@ -9,13 +9,15 @@ App.PostsNewController = Ember.ObjectController.extend({
   actions: {
     save: function() {
       _this = this;
-      post = this.store.createRecord('post', {
+      post = this.store.createRecord('post', this.getProperties('title', 'body', 'image_url', 'selectedUser', 'excerpt')); 
+      // {
 
-        title: this.get('title'),
-        content: this.get('body'),
-        user: this.get('selectedUser'),
-        excerpt: this.get('excerpt'),
-      });
+      //   title: this.get('title'),
+      //   content: this.get('body'),
+      //   image_url: this.get('image_url'),
+      //   user: this.get('selectedUser'),
+      //   excerpt: this.get('excerpt'),
+      // });
 
       post.save().then(
 
