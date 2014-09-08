@@ -111,5 +111,7 @@ App.PostsNewRoute = Ember.Route.extend({
     return {
       users: users,
     };
-  }
+  },
+
+
 });

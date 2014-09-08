@@ -9,15 +9,14 @@ App.PostsNewController = Ember.ObjectController.extend({
   actions: {
     save: function() {
       _this = this;
-      post = this.store.createRecord('post', this.getProperties('title', 'body', 'image_url', 'selectedUser', 'excerpt')); 
-      // {
+      post = this.store.createRecord('post',  {
 
-      //   title: this.get('title'),
-      //   content: this.get('body'),
-      //   image_url: this.get('image_url'),
-      //   user: this.get('selectedUser'),
-      //   excerpt: this.get('excerpt'),
-      // });
+        title: this.get('title'),
+        content: this.get('body'),
+        image_url: this.get('image_url'),
+        user: this.get('selectedUser'),
+        excerpt: this.get('excerpt'),
+      });
 
       post.save().then(
 
@@ -53,5 +52,6 @@ App.PostsNewController = Ember.ObjectController.extend({
     this.set('excerpt', '');
     this.set('body', '');
     this.set('selectedUser', null);
+
   },
 })
